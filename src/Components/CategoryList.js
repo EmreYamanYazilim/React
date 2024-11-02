@@ -5,6 +5,8 @@ export default class CategoryList extends Component {
     render() {
         return (
             <div>
+                <h3>{this.props.info.categoryDeneme}</h3>
+                
                 <ListGroup>
                     <ListGroupItem>
                         Cras justo odio
