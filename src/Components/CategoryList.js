@@ -2,32 +2,19 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from "reactstrap";
 
 export default class CategoryList extends Component {
-    // constructor(props) {
-    //     super(props)
 
-    //     this.state = {
-    //         categories: [
-    //             { categoryId: 1, categoryName: "tatlı" },
-    //             { categoryId: 2, categoryName: "icecek" },
-    //             { categoryId: 3, categoryName: "yemek" },
-    //             { categoryId: 4, categoryName: "salata" }
-    //         ]
-    //     }
-    // }
-
-    // yukarıdaki gibide yapabiliriz direk sade şekilde alttaki gibide yapabiliriz yeni kullanım
     state = {
-        categories: [
-            { categoryId: 1, categoryName: "tatlı" },
-            { categoryId: 2, categoryName: "icecek" },
-            { categoryId: 3, categoryName: "yemek" },
-            { categoryId: 4, categoryName: "salata" }
-        ],
-        currentCategory: "",
+        categories: []
     }
 
-    changeCategory = (category) => {
-        this.setState({ currentCategory: category.categoryName })
+    componentDidMount(){
+        this.getCategories();
+    }
+
+    getCategories = () => {
+        fetch("http://localhost:3000/categories")
+            .then(response => response.json())
+            .then(data => this.setState({ categories: data }))
     }
     render() {
         return (
@@ -36,13 +23,13 @@ export default class CategoryList extends Component {
                 <ListGroup>
                     {this.state.categories.map(category => (
                         <ListGroupItem
-                            onClick={() => this.changeCategory(category)}
-                            key={category.categoryId}>
+                            onClick={() => this.props.changeCategoryProps(category)}
+                            key={category.id}>
                             {category.categoryName}
                         </ListGroupItem>
                     ))}
                 </ListGroup>
-                <h1>{this.state.currentCategory}</h1>
+                <h1>{this.props.currentCategory}</h1>
             </div>
         )
     }
