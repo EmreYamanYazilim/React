@@ -34,9 +34,7 @@ export default class App extends Component {
     return (
       <div>
         <Container>
-          <Row>
             <Navi />
-          </Row>
           <Row>
             <Col xs="3">
               <CategoryList 
@@ -45,6 +43,19 @@ export default class App extends Component {
               info={CategoryInfo} />
             </Col>
             <Col xs="9">
+            <Switch>
+              <Route
+              exect path="/"
+              render = {props=> (
+                <ProductList 
+                {...props}
+                products={this.state.products}
+                currentCategory={this.state.currentCategory} 
+                info={productInfo} />
+              )        
+              }>                
+              </Route>
+            </Switch>
               <ProductList 
               products={this.state.products}
               currentCategory={this.state.currentCategory} 

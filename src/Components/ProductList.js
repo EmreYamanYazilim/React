@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import { Table } from "reactstrap";
+import { Table,Button } from "reactstrap";
 
 export default class ProductList extends Component {
+addToCard = (product) => {
+  alert(product.productName)
+}
+
   render() {
     return (
       <div>
@@ -16,38 +20,45 @@ export default class ProductList extends Component {
                 #
               </th>
               <th>
-              productName
+                productName
               </th>
               <th>
-              quantity Per Unit
+                quantity Per Unit
               </th>
               <th>
-              unit Price
+                unit Price
               </th>
               <th>
-              units In Stock
+                units In Stock
               </th>
             </tr>
           </thead>
           <tbody>
-            {this.props.products.map(product =>(
-            <tr key={product.id}>
-            <th scope="row">
-              {product.id}
-            </th>
-            <td>
-              {product.productName}
-            </td>
-            <td>
-              {product.quantityPerUnit}
-            </td>
-            <td>
-              {product.unitPrice}
-            </td>
-            <td>
-              {product.unitsInStock}
-            </td>
-          </tr>
+            {this.props.products.map(product => (
+              <tr key={product.id}>
+                <th scope="row">
+                  {product.id}
+                </th>
+                <td>
+                  {product.productName}
+                </td>
+                <td>
+                  {product.quantityPerUnit}
+                </td>
+                <td>
+                  {product.unitPrice}
+                </td>
+                <td>
+                  {product.unitsInStock}
+                </td>
+                <td>
+                <Button 
+                onClick={() => this.addToCard(product)}
+                color="info">
+                  Add
+                </Button> 
+                </td>
+              </tr>
             ))}
           </tbody>
         </Table>
