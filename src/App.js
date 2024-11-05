@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navi from './Components/Navi';
+
 import CategoryList from './Components/CategoryList';
 import ProductList from './Components/ProductList';
 import { Container, Row, Col } from "reactstrap";
@@ -34,7 +34,7 @@ export default class App extends Component {
     return (
       <div>
         <Container>
-            <Navi />
+          <Navi/>
           <Row>
             <Col xs="3">
               <CategoryList 
